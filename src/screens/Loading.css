@@ -1,0 +1,68 @@
+.loading {
+  flex: 1;
+  background: var(--butter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 30px;
+}
+.croc-spin {
+  font-size: 70px;
+  animation: wiggle 1.2s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+.loading-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 24px;
+}
+.loading-msg {
+  margin-top: 14px;
+  min-height: 66px;
+}
+.msg-line {
+  font-size: 13px;
+  color: var(--sub);
+  line-height: 1.9;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.msg-line.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+.loading-bar {
+  width: 180px;
+  height: 8px;
+  background: #f3edd9;
+  border-radius: 999px;
+  margin-top: 24px;
+  overflow: hidden;
+}
+.loading-bar i {
+  display: block;
+  width: 60%;
+  height: 100%;
+  background: var(--croc);
+  border-radius: 999px;
+  animation: load 2.5s ease forwards;
+}
+@keyframes load {
+  0% {
+    width: 8%;
+  }
+  100% {
+    width: 96%;
+  }
+}

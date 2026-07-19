@@ -1,0 +1,90 @@
+.profile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.profile-head {
+  padding: max(16px, env(safe-area-inset-top)) 20px 0;
+}
+.profile-back {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  color: var(--sub);
+  display: grid;
+  place-items: center;
+}
+.profile-body {
+  flex: 1;
+  padding: 8px 24px 0;
+  display: flex;
+  flex-direction: column;
+}
+.profile-egg {
+  font-size: 52px;
+  align-self: center;
+  filter: drop-shadow(0 8px 14px rgba(90, 59, 0, 0.15));
+  animation: bob 3s ease-in-out infinite;
+}
+.profile-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--croc-deep);
+  background: var(--mint);
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-top: 18px;
+}
+.profile-title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-top: 12px;
+}
+.profile-sub {
+  font-size: 13px;
+  color: var(--sub);
+  margin-top: 8px;
+}
+
+.field {
+  margin-top: 24px;
+}
+.field-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--sub);
+  margin-bottom: 8px;
+}
+.text-input {
+  width: 100%;
+  height: 54px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.text-input::placeholder {
+  color: #b7bdb9;
+  font-weight: 500;
+}
+.text-input:focus {
+  border-color: var(--croc);
+  box-shadow: 0 6px 16px rgba(247, 202, 69, 0.25);
+}
+
+/* 나이 휠 피커 스타일은 components/WheelPicker.css 참고 */
+
+.profile-foot {
+  padding: 16px 22px calc(26px + env(safe-area-inset-bottom));
+}

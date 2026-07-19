@@ -1,0 +1,156 @@
+.question {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.q-head {
+  padding: max(16px, env(safe-area-inset-top)) 22px 0;
+  flex: none;
+}
+.q-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.q-icon {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--sub);
+  display: grid;
+  place-items: center;
+  margin: 0 -8px;
+}
+.progress {
+  height: 8px;
+  background: #efeadb;
+  border-radius: 999px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f7ca45, #fbdd7e);
+  transition: width 0.3s ease;
+}
+.q-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--croc-deep);
+  margin-top: 8px;
+}
+
+.q-body {
+  flex: 1;
+  padding: 18px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  animation: q-in 0.28s ease;
+}
+@keyframes q-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.q-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--croc-deep);
+  background: var(--mint);
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.q-title {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.45;
+  margin-top: 12px;
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+.opt {
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+.opt-ic {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--mint);
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  flex: none;
+}
+.opt-t {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.opt.sel {
+  border-color: var(--croc);
+  background: #fffbec;
+  box-shadow: 0 6px 16px rgba(247, 202, 69, 0.3);
+}
+.opt.sel .opt-ic {
+  background: #fdeeb8;
+}
+.opt-check {
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--croc);
+  color: #5a3b00;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+/* 카드 아래 은은한 '이전' 되돌리기 (다음 버튼은 없음 — 탭 시 자동 전환) */
+.q-nav {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 8px 22px calc(20px + env(safe-area-inset-bottom));
+}
+.q-prev {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a7ada8;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: color 0.12s ease, background 0.12s ease;
+}
+.q-prev:hover {
+  color: var(--sub);
+  background: rgba(0, 0, 0, 0.03);
+}

@@ -36,7 +36,7 @@ export default function Profile({ initial, onBack, onNext }) {
 
         <div className='field'>
           <label className='field-label' htmlFor='child-name'>
-            아이 이름 (또는 태명)
+            아이 이름 (또는 별명)
           </label>
           <input
             id='child-name'

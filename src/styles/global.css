@@ -1,0 +1,112 @@
+@import './tokens.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  background: #eae7de;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App is a single mobile frame centered on desktop, full-bleed on mobile */
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.frame {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100dvh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 480px) {
+  .app-shell {
+    padding: 24px;
+    align-items: center;
+  }
+  .frame {
+    min-height: unset;
+    height: min(880px, calc(100dvh - 48px));
+    border-radius: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 18px 44px rgba(90, 59, 0, 0.14);
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* Shared status bar (cosmetic, mirrors mockup) */
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 20px 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sub);
+  flex: none;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: var(--radius-btn);
+  background: var(--croc);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.btn.ghost {
+  background: #fff;
+  color: var(--croc-deep);
+  border: 1.5px solid var(--mint-line);
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

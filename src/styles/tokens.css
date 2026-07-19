@@ -1,0 +1,23 @@
+:root {
+  /* Brand palette — extracted from the app home / design board */
+  --croc: #f7ca45;
+  --croc-deep: #58a86c;
+  --croc-dark: #3f7a4e;
+  --butter: #fdfaeb;
+  --green: #7cbd7f;
+  --mint: #eaf8ee;
+  --mint-line: #cfe9d6;
+  --amber: #f7ca45;
+  --amber-ink: #8a6400;
+  --coral: #d14a7e;
+  --pink: #f8d4e3;
+  --ink: #19191a;
+  --sub: #6b6f6c;
+  --line: #ecece7;
+  --bg: #f7f6f1;
+
+  --radius-card: 18px;
+  --radius-btn: 14px;
+  --shadow-btn: 0 6px 16px rgba(247, 202, 69, 0.5);
+  --shadow-card: 0 6px 16px rgba(247, 202, 69, 0.3);
+}

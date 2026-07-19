@@ -1,0 +1,138 @@
+// 원정대(과학/농장/역사/숲)별 추천 프로그램 — 더미 데이터
+// url: 클릭 시 연결할 링크 (지금은 플레이스홀더 '#')
+// isPB: 째깍 PB(자체 프로그램) 여부 — 결과에서 최소 1개 하이라이트 보장
+
+export const productsByExpedition = {
+  과학: [
+    {
+      thumb: '🍠',
+      thumbFrom: '#FBDD7E',
+      thumbTo: '#F7CA45',
+      title: '째깍 하원클래스 · 자연탐구대',
+      meta: '유치원 픽업 포함 · 주 1회 × 4주',
+      price: '월 148,000원',
+      isPB: true,
+      url: '#',
+    },
+    {
+      thumb: '🔭',
+      thumbFrom: '#F8D4E3',
+      thumbTo: '#F2B9D0',
+      title: '주말 과학관 탐험 클래스',
+      meta: '토요일 · 단건',
+      price: '42,000원',
+      isPB: false,
+      url: '#',
+    },
+    {
+      thumb: '🧪',
+      thumbFrom: '#EAF8EE',
+      thumbTo: '#C9E8CE',
+      title: '집콕 실험 키트 · 4주 구독',
+      meta: '매주 배송 · 홈클래스',
+      price: '월 36,000원',
+      isPB: false,
+      url: '#',
+    },
+  ],
+  농장: [
+    {
+      thumb: '🐑',
+      thumbFrom: '#FBDD7E',
+      thumbTo: '#F7CA45',
+      title: '째깍 하원클래스 · 농장 친구들',
+      meta: '유치원 픽업 포함 · 주 1회 × 4주',
+      price: '월 152,000원',
+      isPB: true,
+      url: '#',
+    },
+    {
+      thumb: '🚜',
+      thumbFrom: '#EAF8EE',
+      thumbTo: '#C9E8CE',
+      title: '주말 목장 체험 원데이',
+      meta: '토·일 · 단건',
+      price: '45,000원',
+      isPB: false,
+      url: '#',
+    },
+    {
+      thumb: '🎭',
+      thumbFrom: '#F8D4E3',
+      thumbTo: '#F2B9D0',
+      title: '이야기 역할극 놀이 클래스',
+      meta: '평일 · 주 1회',
+      price: '38,000원',
+      isPB: false,
+      url: '#',
+    },
+  ],
+  역사: [
+    {
+      thumb: '🏛️',
+      thumbFrom: '#FBDD7E',
+      thumbTo: '#F7CA45',
+      title: '째깍 하원클래스 · 시간여행대',
+      meta: '유치원 픽업 포함 · 주 1회 × 4주',
+      price: '월 150,000원',
+      isPB: true,
+      url: '#',
+    },
+    {
+      thumb: '📜',
+      thumbFrom: '#F8D4E3',
+      thumbTo: '#F2B9D0',
+      title: '박물관 스토리 탐험 클래스',
+      meta: '주말 · 단건',
+      price: '44,000원',
+      isPB: false,
+      url: '#',
+    },
+    {
+      thumb: '🧩',
+      thumbFrom: '#EAF8EE',
+      thumbTo: '#C9E8CE',
+      title: '차근차근 논리 보드게임 클래스',
+      meta: '평일 · 주 1회',
+      price: '39,000원',
+      isPB: false,
+      url: '#',
+    },
+  ],
+  숲: [
+    {
+      thumb: '🌳',
+      thumbFrom: '#FBDD7E',
+      thumbTo: '#F7CA45',
+      title: '째깍 하원클래스 · 숲 발명대',
+      meta: '유치원 픽업 포함 · 주 1회 × 4주',
+      price: '월 146,000원',
+      isPB: true,
+      url: '#',
+    },
+    {
+      thumb: '🍄',
+      thumbFrom: '#EAF8EE',
+      thumbTo: '#C9E8CE',
+      title: '서울숲 숲놀이 원데이',
+      meta: '평일·주말 · 단건',
+      price: '38,000원',
+      isPB: false,
+      url: '#',
+    },
+    {
+      thumb: '🎨',
+      thumbFrom: '#F8D4E3',
+      thumbTo: '#F2B9D0',
+      title: '자연물 상상 미술 클래스',
+      meta: '주말 · 단건',
+      price: '40,000원',
+      isPB: false,
+      url: '#',
+    },
+  ],
+}
+
+export function getProducts(expedition) {
+  return productsByExpedition[expedition] || []
+}

@@ -30,7 +30,6 @@ body {
 
 .frame {
   width: 100%;
-  max-width: 420px;
   min-height: 100dvh;
   background: var(--bg);
   display: flex;
@@ -39,12 +38,14 @@ body {
   overflow: hidden;
 }
 
+/* 웹(태블릿 이상)에서만 가운데 카드형 — 모바일은 전 폭 꽉 채움 */
 @media (min-width: 480px) {
   .app-shell {
     padding: 24px;
     align-items: center;
   }
   .frame {
+    max-width: 420px;
     min-height: unset;
     height: min(880px, calc(100dvh - 48px));
     border-radius: 28px;
@@ -55,6 +56,17 @@ body {
 button {
   font-family: inherit;
   cursor: pointer;
+}
+
+/* iOS가 숫자를 자동 링크(전화/날짜)로 바꿔도 파란색이 되지 않도록 */
+a[href^='tel'],
+a[href^='sms'],
+a[x-apple-data-detectors],
+a[x-apple-data-detectors] * {
+  color: inherit !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: inherit !important;
+  pointer-events: none;
 }
 
 input {

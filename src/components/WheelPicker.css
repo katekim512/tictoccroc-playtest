@@ -1,0 +1,68 @@
+.wheel-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* 가운데 선택 밴드 */
+.wheel-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background: rgba(247, 202, 69, 0.1);
+  border-top: 1.5px solid var(--mint-line);
+  border-bottom: 1.5px solid var(--mint-line);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.wheel {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* 위아래로 갈수록 흐려지는 페이드 */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 28%,
+    #000 72%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 28%,
+    #000 72%,
+    transparent 100%
+  );
+}
+.wheel::-webkit-scrollbar {
+  display: none;
+}
+
+.wheel-item {
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  line-height: 1;
+  font-size: 22px;
+  font-weight: 700;
+  color: #b7bdb9;
+  transition: color 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+}
+.wheel-item.active {
+  color: var(--amber-ink);
+  font-weight: 800;
+  transform: scale(1.18);
+}
+.wheel-unit {
+  font-size: 13px;
+  font-weight: 700;
+}

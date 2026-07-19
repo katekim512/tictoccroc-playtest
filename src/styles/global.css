@@ -56,6 +56,9 @@ body {
 button {
   font-family: inherit;
   cursor: pointer;
+  /* iOS Safari가 버튼 글자를 기본 파란색으로 렌더링하는 것 방지 */
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
 }
 
 /* iOS가 숫자를 자동 링크(전화/날짜)로 바꿔도 파란색이 되지 않도록 */

@@ -3,12 +3,9 @@
 //       'immersion' → X(탐구·실제) / Y(상상·서사)
 //       'style' → P(계획·완성) / F(자유)
 // value 는 해당 축의 글자. 다수결(2/3)로 축 글자를 결정한다.
-
-export const AXIS_META = {
-  energy: { eyebrow: '🐊 아이의 에너지' },
-  immersion: { eyebrow: '🐊 아이의 몰입 스타일' },
-  style: { eyebrow: '🐊 노는 방식' },
-}
+//
+// 표시 순서는 축이 한곳에 몰리지 않도록 에너지→몰입→방식을 번갈아 배치한다.
+// (채점은 q.axis 로 그룹핑하므로 순서와 무관하게 동일한 결과가 나온다.)
 
 export const questions = [
   {
@@ -21,48 +18,12 @@ export const questions = [
     ],
   },
   {
-    id: 'q2',
-    axis: 'energy',
-    title: '아이가 제일 신나 하는 놀이는?',
-    options: [
-      { icon: '🤸', label: '술래잡기, 미끄럼틀\n몸으로 노는 게 최고!', value: 'A' },
-      { icon: '🧩', label: '블록 조립, 그리기\n앉아서 하는 놀이가 좋아요', value: 'B' },
-    ],
-  },
-  {
-    id: 'q3',
-    axis: 'energy',
-    title: '하루 종일 놀고 온 날 저녁엔?',
-    options: [
-      { icon: '⚡', label: '그래도 에너지가\n남아돌아요', value: 'A' },
-      { icon: '🌙', label: '조용한 놀이로\n하루를 마무리해요', value: 'B' },
-    ],
-  },
-  {
     id: 'q4',
     axis: 'immersion',
     title: '새 장난감을 받으면?',
     options: [
       { icon: '🔍', label: '어떻게 움직이는지\n뜯어보고 눌러봐요', value: 'X' },
       { icon: '📖', label: '장난감으로 이야기를\n지어내며 놀아요', value: 'Y' },
-    ],
-  },
-  {
-    id: 'q5',
-    axis: 'immersion',
-    title: '아이가 자주 하는 질문은?',
-    options: [
-      { icon: '❓', label: '"왜? 어떻게\n그렇게 돼?"', value: 'X' },
-      { icon: '💬', label: '"그래서 그 다음엔\n어떻게 됐어?"', value: 'Y' },
-    ],
-  },
-  {
-    id: 'q6',
-    axis: 'immersion',
-    title: '그림을 그릴 때 아이는?',
-    options: [
-      { icon: '✏️', label: '실제랑 똑같이\n그리려고 애써요', value: 'X' },
-      { icon: '🎨', label: '상상 속 세계를\n자유롭게 그려요', value: 'Y' },
     ],
   },
   {
@@ -75,12 +36,48 @@ export const questions = [
     ],
   },
   {
+    id: 'q2',
+    axis: 'energy',
+    title: '아이가 제일 신나 하는 놀이는?',
+    options: [
+      { icon: '🤸', label: '술래잡기, 미끄럼틀\n몸으로 노는 게 최고!', value: 'A' },
+      { icon: '🧩', label: '블록 조립, 그리기\n앉아서 하는 놀이가 좋아요', value: 'B' },
+    ],
+  },
+  {
+    id: 'q5',
+    axis: 'immersion',
+    title: '아이가 자주 하는 질문은?',
+    options: [
+      { icon: '❓', label: '"왜? 어떻게\n그렇게 돼?"', value: 'X' },
+      { icon: '💬', label: '"그래서 그 다음엔\n어떻게 됐어?"', value: 'Y' },
+    ],
+  },
+  {
     id: 'q8',
     axis: 'style',
     title: '놀이가 계획이랑 달라지면?',
     options: [
       { icon: '🎯', label: '원래 하려던 대로\n하고 싶어 해요', value: 'P' },
       { icon: '💡', label: '"그럼 이렇게 하자!"\n금방 새 놀이를 만들어요', value: 'F' },
+    ],
+  },
+  {
+    id: 'q3',
+    axis: 'energy',
+    title: '하루 종일 놀고 온 날 저녁엔?',
+    options: [
+      { icon: '⚡', label: '그래도 에너지가\n남아돌아요', value: 'A' },
+      { icon: '🌙', label: '조용한 놀이로\n하루를 마무리해요', value: 'B' },
+    ],
+  },
+  {
+    id: 'q6',
+    axis: 'immersion',
+    title: '그림을 그릴 때 아이는?',
+    options: [
+      { icon: '✏️', label: '실제랑 똑같이\n그리려고 애써요', value: 'X' },
+      { icon: '🎨', label: '상상 속 세계를\n자유롭게 그려요', value: 'Y' },
     ],
   },
   {

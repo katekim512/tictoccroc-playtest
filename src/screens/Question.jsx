@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { questions, AXIS_META } from '../data/questions'
+import { questions } from '../data/questions'
 import './Question.css'
 
 export default function Question({ initialAnswers, onExit, onComplete }) {
@@ -51,7 +51,6 @@ export default function Question({ initialAnswers, onExit, onComplete }) {
       </div>
 
       <div className="q-body" key={q.id}>
-        <div className="q-eyebrow">{AXIS_META[q.axis].eyebrow}</div>
         <h2 className="q-title">
           {q.title.split('\n').map((line, i) => (
             <span key={i}>

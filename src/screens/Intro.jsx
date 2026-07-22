@@ -4,7 +4,6 @@ export default function Intro({ onStart }) {
   return (
     <div className="intro">
       <div className="intro-top">
-        <div className="intro-egg">🐊</div>
         <div className="intro-eyebrow">🎈 1분 놀이 성향 테스트</div>
         <h2 className="intro-title">
           우리 아이는

@@ -26,7 +26,6 @@ export default function Profile({ initial, onBack, onNext }) {
       </div>
 
       <div className='profile-body'>
-        <div className='profile-egg'>🐊</div>
         <div className='profile-eyebrow'>🐣 시작 전에 알려주세요</div>
         <h2 className='profile-title'>
           우리 아이의 이름을

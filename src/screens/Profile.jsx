@@ -3,7 +3,7 @@ import WheelPicker from '../components/WheelPicker'
 import './Profile.css'
 
 const AGE_MIN = 1
-const AGE_MAX = 10
+const AGE_MAX = 13
 
 export default function Profile({ initial, onBack, onNext }) {
   const [name, setName] = useState(initial?.name || '')

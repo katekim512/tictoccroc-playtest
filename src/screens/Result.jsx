@@ -24,12 +24,14 @@ export default function Result({ profile, result, onRestart }) {
     <div className='result'>
       <div
         className='r-hero'
-        style={{
-          background: `linear-gradient(165deg, ${theme.from}, ${theme.to})`,
-        }}
+        style={{ background: theme.bg }}
       >
         <div className='r-badge'>재미로 보는 놀이 성향 테스트예요</div>
-        <div className='r-char'>{type.emoji}</div>
+        <img
+          className='r-char'
+          src={type.image}
+          alt={`${type.name} ${type.animal}`}
+        />
         <div className='r-who'>
           {age ? `${age}세 ` : ''}
           {nameSubject}

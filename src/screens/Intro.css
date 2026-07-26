@@ -64,6 +64,16 @@
   display: grid;
   place-items: center;
   font-size: 24px;
+  overflow: hidden;
+}
+.intro-silhouettes .sil img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.intro-silhouettes .sil img.sil-sm {
+  width: 82%;
+  height: 82%;
 }
 .intro-silhouettes .sil.q {
   color: rgba(90, 59, 0, 0.4);

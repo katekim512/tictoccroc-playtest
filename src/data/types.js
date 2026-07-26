@@ -1,13 +1,24 @@
+// 캐릭터 이미지 (pic/ 폴더)
+import imgAXF from '../../pic/찰방이_수달.png'
+import imgAXP from '../../pic/토리_다람쥐.png'
+import imgAYF from '../../pic/골디_골드리트리버.png'
+import imgAYP from '../../pic/코코_코끼리.png'
+import imgBXF from '../../pic/뾰롱_고슴도치.png'
+import imgBXP from '../../pic/등이_거북이.png'
+import imgBYF from '../../pic/몽실_토끼.png'
+import imgBYP from '../../pic/밤이_부엉이.png'
+
 // 8가지 놀이 유형 — character_explain 기준
 // 코드 = 에너지(A/B) + 몰입(X/Y) + 방식(P/F)
 // expedition: 과학 / 농장 / 역사 / 숲  → products.js 추천 키와 연결
+// emoji는 폴백용, image가 실제 캐릭터 사진
 
-// 원정대별 대표 컬러 (share 카드 / 결과 히어로 그라데이션)
+// 원정대별 대표 컬러 (결과 히어로 배경 — 단색)
 export const EXPEDITION_THEME = {
-  과학: { from: '#7CBD7F', to: '#58A86C', chipBg: '#EAF8EE', chipInk: '#3F7A4E' },
-  농장: { from: '#FBDD7E', to: '#F7CA45', chipBg: '#FDF3D0', chipInk: '#8A6400' },
-  역사: { from: '#F2B9D0', to: '#D14A7E', chipBg: '#F8D4E3', chipInk: '#B03A6B' },
-  숲: { from: '#8FC98F', to: '#3F7A4E', chipBg: '#E6F4E9', chipInk: '#3F7A4E' },
+  과학: { bg: '#DDF5EE' },
+  농장: { bg: '#FFF2D8' },
+  역사: { bg: '#E6A3A0' },
+  숲: { bg: '#E7F4D8' },
 }
 
 export const types = {
@@ -16,6 +27,7 @@ export const types = {
     name: '찰방',
     animal: '수달',
     emoji: '🦦',
+    image: imgAXF,
     typeName: '활동적인 자유 탐구가',
     expedition: '과학',
     desc: '물이든 흙이든 일단 뛰어들고 보는 장난꾸러기. "이거 뭐야?" 하며 만지고 뒤집고 굴려봐야 직성이 풀려요. 계획은 없지만 세상 모든 게 놀잇감입니다.',
@@ -27,6 +39,7 @@ export const types = {
     name: '토리',
     animal: '다람쥐',
     emoji: '🐿️',
+    image: imgAXP,
     typeName: '활동적인 실험 완성가',
     expedition: '과학',
     desc: '잠시도 가만있지 않지만, 한번 시작한 건 끝을 봐야 하는 야무진 성격. 도토리를 종류별로 착착 모으듯, 관찰하고 정리하며 실험을 완성해요.',
@@ -38,6 +51,7 @@ export const types = {
     name: '골디',
     animal: '골든리트리버',
     emoji: '🐕',
+    image: imgAYF,
     typeName: '활동적인 이야기 모험가',
     expedition: '농장',
     desc: '누구와도 금방 친구가 되는 햇살 같은 아이. 규칙보다 "그래서 다음엔?" 하며 이야기를 만들고, 친구 손 잡고 어디든 신나게 떠나요.',
@@ -49,6 +63,7 @@ export const types = {
     name: '코코',
     animal: '코끼리',
     emoji: '🐘',
+    image: imgAYP,
     typeName: '활동적인 서사 완주자',
     expedition: '역사',
     desc: '든든한 맏이 같은 리더. 한번 들은 이야기는 절대 안 잊고, 시작한 모험은 무슨 일이 있어도 끝까지 완주해요. 친구들이 기댈 수 있는 큰 나무 같은 존재.',
@@ -60,6 +75,7 @@ export const types = {
     name: '뽀롱',
     animal: '고슴도치',
     emoji: '🦔',
+    image: imgBXF,
     typeName: '차분한 탐구 발명가',
     expedition: '숲',
     desc: '조용히 웅크려 있지만 머릿속은 물음표로 가득. 남들이 지나치는 걸 가만히 들여다보다, 자기만의 방식으로 뚝딱 새로운 걸 만들어내는 마이페이스 발명가.',
@@ -71,6 +87,7 @@ export const types = {
     name: '등이',
     animal: '거북이',
     emoji: '🐢',
+    image: imgBXP,
     typeName: '차분한 분석 연구가',
     expedition: '역사',
     desc: '서두르는 법이 없는 느긋한 현자. 오래 보고 깊이 생각한 뒤, 순서대로 차근차근 풀어나가요. 한번 정한 건 끝까지 해내는 끈기의 소유자.',
@@ -82,6 +99,7 @@ export const types = {
     name: '몽실',
     animal: '토끼',
     emoji: '🐰',
+    image: imgBYF,
     typeName: '차분한 상상 예술가',
     expedition: '숲',
     desc: '조용하지만 머릿속엔 늘 딴 세상이 펼쳐지는 몽상가. 정답보다 상상을 좋아하고, 구름을 보면 토끼도 성도 보이는 자유로운 감성의 소유자.',
@@ -93,6 +111,7 @@ export const types = {
     name: '밤이',
     animal: '부엉이',
     emoji: '🦉',
+    image: imgBYP,
     typeName: '차분한 서사 기록가',
     expedition: '농장',
     desc: '모두가 잠든 밤, 조용히 세상을 지켜보는 지혜로운 관찰자. 들은 이야기를 하나도 빠짐없이 차곡차곡 기억하고, 필요할 때 살며시 들려주는 이야기 지킴이.',

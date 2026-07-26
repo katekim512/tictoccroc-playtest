@@ -137,9 +137,9 @@
   height: 58px;
   border-radius: 12px;
   flex: none;
-  display: grid;
-  place-items: center;
-  font-size: 26px;
+  object-fit: cover;
+  display: block;
+  background: var(--mint);
 }
 .prod-info {
   flex: 1;

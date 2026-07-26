@@ -68,14 +68,7 @@ export default function Result({ profile, result, onRestart }) {
             className={`prod ${isPick ? 'hl' : ''}`}
             onClick={() => openProduct(p.url)}
           >
-            <span
-              className='prod-thumb'
-              style={{
-                background: `linear-gradient(150deg, ${p.thumbFrom}, ${p.thumbTo})`,
-              }}
-            >
-              {p.thumb}
-            </span>
+            <img className='prod-thumb' src={p.thumbImg} alt='' />
             <span className='prod-info'>
               <span className='prod-t1'>
                 {p.title}

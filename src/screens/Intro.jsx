@@ -1,3 +1,4 @@
+import { types } from '../data/types'
 import './Intro.css'
 
 export default function Intro({ onStart }) {
@@ -16,8 +17,12 @@ export default function Intro({ onStart }) {
           아이에게 딱 맞는 프로그램을 찾아드려요
         </p>
         <div className="intro-silhouettes">
-          <div className="sil">🦦</div>
-          <div className="sil">🐘</div>
+          <div className="sil">
+            <img src={types.AXF.image} alt="" />
+          </div>
+          <div className="sil">
+            <img className="sil-sm" src={types.AYF.image} alt="" />
+          </div>
           <div className="sil q">?</div>
           <div className="sil q">?</div>
         </div>

@@ -24,12 +24,14 @@ export default function Result({ profile, result, onRestart }) {
     <div className='result'>
       <div
         className='r-hero'
-        style={{
-          background: `linear-gradient(165deg, ${theme.from}, ${theme.to})`,
-        }}
+        style={{ background: theme.bg }}
       >
         <div className='r-badge'>재미로 보는 놀이 성향 테스트예요</div>
-        <div className='r-char'>{type.emoji}</div>
+        <img
+          className='r-char'
+          src={type.image}
+          alt={`${type.name} ${type.animal}`}
+        />
         <div className='r-who'>
           {age ? `${age}세 ` : ''}
           {nameSubject}
@@ -58,31 +60,27 @@ export default function Result({ profile, result, onRestart }) {
       <div className='r-sec'>
         <h4>{josa(name, '이를/를')} 위한 맞춤 프로그램</h4>
         <div className='r-exped'>🧭 추천 원정대 · {type.expedition} 원정대</div>
-        {products.map((p, i) => (
+        {products.map((p, i) => {
+          const isPick = p.title.includes('단독') // 상품명에 '단독' → 째깍 PICK
+          return (
           <button
             key={i}
-            className={`prod ${p.isPB ? 'hl' : ''}`}
+            className={`prod ${isPick ? 'hl' : ''}`}
             onClick={() => openProduct(p.url)}
           >
-            <span
-              className='prod-thumb'
-              style={{
-                background: `linear-gradient(150deg, ${p.thumbFrom}, ${p.thumbTo})`,
-              }}
-            >
-              {p.thumb}
-            </span>
+            <img className='prod-thumb' src={p.thumbImg} alt='' />
             <span className='prod-info'>
               <span className='prod-t1'>
                 {p.title}
-                {p.isPB && <span className='prod-pb'>째깍 PICK</span>}
+                {isPick && <span className='prod-pb'>째깍 PICK</span>}
               </span>
               <span className='prod-t2'>{p.meta}</span>
               <span className='prod-price'>{p.price}</span>
             </span>
             <span className='prod-arrow'>›</span>
           </button>
-        ))}
+          )
+        })}
       </div>
 
       <div className='r-cta'>

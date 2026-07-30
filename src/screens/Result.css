@@ -59,6 +59,7 @@
   line-height: 1.7;
   opacity: 0.95;
   margin-top: 14px;
+  white-space: pre-line;
 }
 .r-hash {
   display: flex;

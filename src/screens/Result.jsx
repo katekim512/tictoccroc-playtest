@@ -1,3 +1,4 @@
+import { Button } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
 import { shareResult } from '../lib/kakao'
@@ -84,12 +85,24 @@ export default function Result({ profile, result, onRestart }) {
       </div>
 
       <div className='r-cta'>
-        <button className='btn ghost' onClick={onRestart}>
+        <Button
+          variant='outlined'
+          color='primary'
+          size='xLarge'
+          inlineCSS={{ flex: 1 }}
+          onClick={onRestart}
+        >
           다시 하기
-        </button>
-        <button className='btn' onClick={handleShare}>
+        </Button>
+        <Button
+          variant='filled'
+          color='primary'
+          size='xLarge'
+          inlineCSS={{ flex: 1 }}
+          onClick={handleShare}
+        >
           카카오톡 공유
-        </button>
+        </Button>
       </div>
       <div className='r-note'>
         놀이 성향은 재미로 보는 참고용이에요 · 아이의 하루하루가 정답입니다 🐊

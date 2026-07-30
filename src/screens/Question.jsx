@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { LineProgressIndicator } from '@dotss/ui'
 import { questions } from '../data/questions'
 import './Question.css'
 
@@ -42,9 +43,11 @@ export default function Question({ initialAnswers, onExit, onComplete }) {
             ✕
           </button>
         </div>
-        <div className="progress">
-          <i style={{ width: `${progress}%` }} />
-        </div>
+        <LineProgressIndicator
+          value={progress}
+          size="small"
+          inlineCSS={{ marginTop: '10px' }}
+        />
         <div className="q-count">
           Q{index + 1} / {total}
         </div>

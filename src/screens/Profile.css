@@ -54,6 +54,10 @@
 .field {
   margin-top: 24px;
 }
+/* @dotss/ui TextField 입력 텍스트를 볼드로 (DS 기본은 Regular) */
+.field input {
+  font-weight: 700;
+}
 .field-label {
   display: block;
   font-size: 12.5px;

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button, TextField } from '@dotss/ui'
 import WheelPicker from '../components/WheelPicker'
 import './Profile.css'
 
@@ -37,11 +38,10 @@ export default function Profile({ initial, onBack, onNext }) {
           <label className='field-label' htmlFor='child-name'>
             아이 이름 (또는 별명)
           </label>
-          <input
+          <TextField
             id='child-name'
-            className='text-input'
-            type='text'
-            inputMode='text'
+            fullWidth
+            size='large'
             maxLength={12}
             placeholder='예) 서준'
             value={name}
@@ -66,9 +66,16 @@ export default function Profile({ initial, onBack, onNext }) {
       </div>
 
       <div className='profile-foot'>
-        <button className='btn' onClick={submit} disabled={!canNext}>
+        <Button
+          variant='filled'
+          color='primary'
+          size='xLarge'
+          fullWidth
+          disabled={!canNext}
+          onClick={submit}
+        >
           테스트 시작하기
-        </button>
+        </Button>
       </div>
     </div>
   )

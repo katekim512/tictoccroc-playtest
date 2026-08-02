@@ -6,18 +6,18 @@ export default function Intro({ onStart }) {
   return (
     <div className='intro'>
       <div className='intro-top'>
-        <div className='intro-eyebrow'>🎈 1분 놀이 성향 테스트</div>
+        <div className='intro-eyebrow'>🍃 1분이면 끝! 놀이 원정대 찾기</div>
         <h2 className='intro-title'>
           우리 아이는
           <br />
-          어떤 놀이 악어일까요?
+          어떤 원정대 대원일까요?
         </h2>
         <p className='intro-sub'>
-          질문 9개에 답하면
+          8가지 놀이 성향으로 알아보는
           <br />
-          아이에게 딱 맞는 프로그램을 찾아드려요
+          우리 아이 이야기
         </p>
-        <div className='intro-silhouettes'>
+        {/* <div className='intro-silhouettes'>
           <div className='sil'>
             <img src={types.AXF.image} alt='' />
           </div>
@@ -26,7 +26,51 @@ export default function Intro({ onStart }) {
           </div>
           <div className='sil q'>?</div>
           <div className='sil q'>?</div>
-        </div>
+        </div> */}
+      </div>
+
+      {/* 언덕 아래에 흩뿌린 캐릭터들 (장식용) */}
+      <div className='intro-chars' aria-hidden='true'>
+        <img
+          src={types.AXF.image}
+          alt=''
+          style={{ left: '5%', bottom: '24%', width: '74px' }}
+        />
+        <img
+          src={types.AXP.image}
+          alt=''
+          style={{ left: '30%', bottom: '23%', width: '80px' }}
+        />
+        <img
+          src={types.AYF.image}
+          alt=''
+          style={{ left: '50%', bottom: '28%', width: '83px' }}
+        />
+        <img
+          src={types.AYP.image}
+          alt=''
+          style={{ right: '5%', bottom: '25%', width: '76px' }}
+        />
+        <img
+          src={types.BYF.image}
+          alt=''
+          style={{ left: '15%', bottom: '17%', width: '62px' }}
+        />
+        <img
+          src={types.BYP.image}
+          alt=''
+          style={{ right: '22%', bottom: '18%', width: '66px' }}
+        />
+        <img
+          src={types.BXF.image}
+          alt=''
+          style={{ left: '40%', bottom: '14%', width: '70px' }}
+        />
+        <img
+          src={types.BXP.image}
+          alt=''
+          style={{ right: '7%', bottom: '13%', width: '78px' }}
+        />
       </div>
 
       <div className='intro-bottom'>
@@ -34,10 +78,18 @@ export default function Intro({ onStart }) {
           variant='filled'
           color='primary'
           size='xLarge'
+          rounded
           fullWidth
           onClick={onStart}
+          inlineCSS={{
+            backgroundColor: '#F7CA45',
+            color: '#3D2A0A',
+            boxShadow: '0 8px 20px rgba(138, 100, 0, 0.3)',
+            '&:hover': { backgroundColor: '#6B4A1F', color: '#FDFAEB' },
+            '&:active': { backgroundColor: '#563A17', color: '#FDFAEB' },
+          }}
         >
-          테스트 시작하기
+          우리 아이 원정대 찾으러 가기 →
         </Button>
         <div className='intro-skip'>로그인 없이 바로 할 수 있어요</div>
       </div>

@@ -17,15 +17,24 @@ export function isKakaoConfigured() {
   return Boolean(typeof window !== 'undefined' && window.Kakao && KAKAO_JS_KEY)
 }
 
-// 테스트를 시작할 수 있는 링크 (배포되면 실제 도메인, 로컬이면 localhost)
-export function getShareUrl() {
-  return window.location.origin + import.meta.env.BASE_URL
+// 공유용 링크 — UTM 꼬리표를 붙여 GA4가 유입(재방문)을 집계할 수 있게 함
+// 예: https://도메인/?utm_source=kakao&utm_medium=share&utm_campaign=play_test&type=AXF
+export function getShareUrl(params = {}) {
+  const base = window.location.origin + import.meta.env.BASE_URL
+  const usp = new URLSearchParams({
+    utm_source: 'kakao',
+    utm_medium: 'share',
+    utm_campaign: 'play_test',
+    ...params,
+  })
+  return `${base}?${usp.toString()}`
 }
 
 // 결과 자랑 + 테스트 초대 카드 공유
 // 성공하면 true, 카카오 미설정으로 폴백(링크 복사)하면 false
 export function shareResult({ name, type }) {
-  const url = getShareUrl()
+  // 어떤 결과가 공유를 유발했는지 보려고 유형 코드도 링크에 실음
+  const url = getShareUrl({ type: type.code })
   const subject = josa(name, '은/는') // "서준은" / "코코는"
 
   initKakao()

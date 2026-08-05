@@ -1,33 +1,72 @@
+import { useEffect } from 'react'
 import { Button } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
 import { shareResult } from '../lib/kakao'
+import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
 export default function Result({ profile, result, onRestart }) {
-  const { type, products } = result
+  const { code, type, products } = result
   const { name, age } = profile
   const theme = EXPEDITION_THEME[type.expedition]
 
   // 이름 조사: "서준은" / "코코는"
   const nameSubject = josa(name, '은/는')
 
-  const openProduct = url => {
-    if (!url || url === '#') return
-    window.open(url, '_blank', 'noopener,noreferrer')
+  // 관찰 포인트: 첫 문장만 볼드, 둘째 문장부터는 일반
+  const [obsFirst, ...obsRest] = type.observation
+    .replace(/\*\*/g, '')
+    .split('\n')
+  const obsSecond = obsRest.join('\n')
+
+  const isPick = p => p.title.includes('단독')
+
+  // 결과 조회 + 추천 상품 노출 로깅
+  useEffect(() => {
+    track('result_view', {
+      type_code: code,
+      expedition: type.expedition,
+      energy: code[0],
+      immersion: code[1],
+      style: code[2],
+      age_group: ageGroup(age),
+    })
+    products.forEach((p, i) =>
+      track('product_impression', {
+        product_id: productId(p.url),
+        expedition: type.expedition,
+        slot: i + 1,
+        is_pb: isPick(p),
+      }),
+    )
+    // 결과 표시 1회
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const openProduct = (p, slot) => {
+    if (!p.url || p.url === '#') return
+    track('product_click', {
+      product_id: productId(p.url),
+      product_name: p.title,
+      expedition: type.expedition,
+      slot,
+      is_pb: isPick(p),
+      link_url: p.url,
+    })
+    window.open(p.url, '_blank', 'noopener,noreferrer')
   }
 
   const handleShare = () => {
+    track('share_click', { type_code: code, channel: 'kakao' })
     shareResult({ name, type })
   }
 
   return (
     <div className='result'>
-      <div
-        className='r-hero'
-        style={{ background: theme.bg }}
-      >
+      <div className='r-hero' style={{ background: theme.bg }}>
         <div className='r-badge'>재미로 보는 놀이 성향 테스트예요</div>
+        <div className='r-quote'>{type.quote}</div>
         <img
           className='r-char'
           src={type.image}
@@ -50,38 +89,44 @@ export default function Result({ profile, result, onRestart }) {
       </div>
 
       <div className='r-sec'>
-        <h4>{josa(name, '이가/가')} 이런 활동에서 눈이 반짝여요</h4>
-        <div className='spark'>
-          {type.sparks.map(s => (
-            <div key={s}>{s}</div>
-          ))}
+        {/* <h4>{josa(name, '이가/가')} 이런 활동에서 가장 몰입해요</h4> */}
+        <h4>우리 아이의 탐험 신호</h4>
+        <div className='r-observe-box'>
+          <p className='r-observe'>
+            <strong>
+              {josa(name, '이는/는')} {obsFirst}
+            </strong>
+            {obsSecond && (
+              <>
+                {'\n'}
+                {obsSecond}
+              </>
+            )}
+          </p>
         </div>
       </div>
 
       <div className='r-sec'>
         <h4>{josa(name, '이를/를')} 위한 맞춤 프로그램</h4>
         <div className='r-exped'>🧭 추천 원정대 · {type.expedition} 원정대</div>
-        {products.map((p, i) => {
-          const isPick = p.title.includes('단독') // 상품명에 '단독' → 째깍 PICK
-          return (
+        {products.map((p, i) => (
           <button
             key={i}
-            className={`prod ${isPick ? 'hl' : ''}`}
-            onClick={() => openProduct(p.url)}
+            className={`prod ${isPick(p) ? 'hl' : ''}`}
+            onClick={() => openProduct(p, i + 1)}
           >
             <img className='prod-thumb' src={p.thumbImg} alt='' />
             <span className='prod-info'>
               <span className='prod-t1'>
                 {p.title}
-                {isPick && <span className='prod-pb'>째깍 PICK</span>}
+                {isPick(p) && <span className='prod-pb'>째깍 PICK</span>}
               </span>
               <span className='prod-t2'>{p.meta}</span>
               <span className='prod-price'>{p.price}</span>
             </span>
             <span className='prod-arrow'>›</span>
           </button>
-          )
-        })}
+        ))}
       </div>
 
       <div className='r-cta'>

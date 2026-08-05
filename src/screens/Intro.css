@@ -30,7 +30,7 @@
   justify-content: flex-start;
   text-align: center;
   /* 정글 이미지의 가운데 빈(밝은) 영역에 글씨가 오도록 */
-  padding: max(20dvh, env(safe-area-inset-top)) 26px 0;
+  padding: max(18dvh, env(safe-area-inset-top)) 26px 0;
 }
 .intro-egg {
   font-size: 76px;

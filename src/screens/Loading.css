@@ -9,7 +9,7 @@
   padding: 0 30px;
 }
 .croc-spin {
-  width: 140px;
+  width: 70px;
   height: auto;
   object-fit: contain;
   animation: wiggle 1.2s ease-in-out infinite;

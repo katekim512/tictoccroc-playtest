@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { LineProgressIndicator } from '@dotss/ui'
 import { questions } from '../data/questions'
+import { track } from '../lib/analytics'
 import './Question.css'
 
 export default function Question({ initialAnswers, onExit, onComplete }) {
@@ -22,6 +23,12 @@ export default function Question({ initialAnswers, onExit, onComplete }) {
   // 탭 → 선택 표시 → 잠깐 뒤 자동으로 다음 문항 (마지막은 완료)
   const choose = (value) => {
     if (locked) return
+    track('question_answer', {
+      q_id: q.id,
+      q_index: index + 1,
+      axis: q.axis,
+      choice: value,
+    })
     const next = { ...answers, [q.id]: value }
     setAnswers(next)
     setLocked(true)

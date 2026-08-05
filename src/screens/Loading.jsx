@@ -31,17 +31,17 @@ export default function Loading({ onDone }) {
   }, [onDone])
 
   return (
-    <div className="loading">
-      <div className="croc-spin">🐊</div>
-      <h3 className="loading-title">째깍째깍... 분석 중이에요</h3>
-      <div className="loading-msg">
+    <div className='loading'>
+      <img className='croc-spin' src='/loading-croc.png' alt='' />
+      <h3 className='loading-title'>째깍째깍... 분석 중이에요</h3>
+      <div className='loading-msg'>
         {MESSAGES.map((m, i) => (
           <div key={i} className={`msg-line ${i <= phase ? 'on' : ''}`}>
             {m} {i < phase ? '✓' : i === phase ? '…' : ''}
           </div>
         ))}
       </div>
-      <div className="loading-bar">
+      <div className='loading-bar'>
         <i />
       </div>
     </div>

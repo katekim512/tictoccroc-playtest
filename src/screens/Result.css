@@ -54,6 +54,32 @@
   border-radius: 999px;
   margin-top: 12px;
 }
+/* 이름 밑 대사 말풍선 */
+/* 캐릭터 위 대사 말풍선 (꼬리 아래로) */
+.r-quote {
+  position: relative;
+  display: inline-block;
+  max-width: 90%;
+  margin: 0 auto 14px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #33322e;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 10px 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.r-quote::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid rgba(255, 255, 255, 0.82);
+}
 .r-desc {
   font-size: 12.5px;
   line-height: 1.7;
@@ -88,18 +114,48 @@
   font-weight: 800;
   margin-bottom: 12px;
 }
-.spark {
+/* 제목 + 관찰 포인트를 하나로 묶은 섹션 박스 */
+.r-observe-box {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 15px 16px;
+  margin-bottom: 14px;
+}
+/* 관찰 포인트 */
+.r-observe {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--sub);
+  white-space: pre-line;
+  text-align: left;
+  margin: 0;
+}
+.r-observe strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+/* 추천 활동 리스트 (→ 화살표) */
+.r-acts {
+  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-.spark div {
+.r-acts li {
+  position: relative;
   background: var(--mint);
   border-radius: 12px;
-  padding: 12px;
+  padding: 12px 12px 12px 32px;
   font-size: 12.5px;
   font-weight: 700;
   color: #3f7a4e;
+  text-align: left;
+}
+.r-acts li::before {
+  content: '→';
+  position: absolute;
+  left: 13px;
+  color: var(--croc-deep);
 }
 
 .r-exped {

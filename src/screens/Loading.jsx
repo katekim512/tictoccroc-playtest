@@ -32,7 +32,7 @@ export default function Loading({ onDone }) {
 
   return (
     <div className="loading">
-      <div className="croc-spin">🐊</div>
+      <img className="croc-spin" src="/모험가_악어.png" alt="" />
       <h3 className="loading-title">째깍째깍... 분석 중이에요</h3>
       <div className="loading-msg">
         {MESSAGES.map((m, i) => (

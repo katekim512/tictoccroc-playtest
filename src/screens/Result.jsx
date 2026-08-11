@@ -67,18 +67,12 @@ export default function Result({ profile, result, onRestart }) {
       <div className='r-hero' style={{ background: theme.bg }}>
         <div className='r-badge'>재미로 보는 놀이 성향 테스트예요</div>
         <div className='r-quote'>{type.quote}</div>
-        <img
-          className='r-char'
-          src={type.image}
-          alt={`${type.name} ${type.animal}`}
-        />
+        <img className='r-char' src={type.image} alt={type.name} />
         <div className='r-who'>
           {age ? `${age}세 ` : ''}
           {nameSubject}
         </div>
-        <h2 className='r-typename'>
-          {type.animal} {type.name}!
-        </h2>
+        <h2 className='r-typename'>{type.name}!</h2>
         <div className='r-role'>{type.typeName}</div>
         <p className='r-desc'>{type.desc}</p>
         <div className='r-hash'>

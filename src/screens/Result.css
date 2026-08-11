@@ -247,6 +247,28 @@
 .r-cta .btn {
   font-size: 13.5px;
 }
+/* 저장·링크 아이콘 버튼 (다시 하기 버튼 높이에 맞춰 stretch) */
+.r-icon-btn {
+  flex: none;
+  width: 54px;
+  border-radius: 14px;
+  border: 1.5px solid var(--mint-line);
+  background: #fff;
+  color: var(--croc-deep);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+.r-icon-btn:active {
+  transform: scale(0.97);
+}
+.r-icon-btn.filled {
+  border: none;
+  background: var(--croc);
+  color: #3d2a0a;
+  box-shadow: 0 6px 16px rgba(247, 202, 69, 0.4);
+}
 .r-note {
   font-size: 10.5px;
   color: #9aa5a0;

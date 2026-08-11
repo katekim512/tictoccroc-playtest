@@ -19,7 +19,11 @@ export function initAnalytics() {
   }
   window.gtag('js', new Date())
   // SPA라 화면 전환마다 page_view를 직접 보냄 → 자동 전송은 끔
-  window.gtag('config', GA_ID, { send_page_view: false })
+  // 개발 모드에선 debug_mode로 GA4 DebugView에 실시간 표시
+  window.gtag('config', GA_ID, {
+    send_page_view: false,
+    debug_mode: import.meta.env.DEV,
+  })
 }
 
 // 커스텀 이벤트 전송

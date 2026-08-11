@@ -60,15 +60,33 @@ export default function Result({ profile, result, onRestart }) {
   // 위 색칠된 히어로 영역만 카드 이미지로 저장
   const heroRef = useRef(null)
   const handleSaveImage = async () => {
-    if (!heroRef.current) return
+    const node = heroRef.current
+    if (!node) return
     track('image_save', { type_code: code })
     try {
-      const dataUrl = await toPng(heroRef.current, {
-        pixelRatio: 2,
-        cacheBust: true,
-        // 저장 이미지에만 둥근 모서리 (화면은 각짐 — 클론에만 적용됨)
-        style: { borderRadius: '28px' },
-      })
+      // 폰트·캐릭터 이미지가 완전히 로드된 뒤 캡처 (모바일에서 빈 이미지 방지)
+      if (document.fonts?.ready) await document.fonts.ready
+      const img = node.querySelector('img')
+      if (img && !img.complete) {
+        await new Promise((res) => {
+          img.onload = res
+          img.onerror = res
+        })
+      }
+      if (img?.decode) {
+        try {
+          await img.decode()
+        } catch {
+          /* 무시 */
+        }
+      }
+
+      // 저장 이미지에만 둥근 모서리 (클론에만 적용 — 화면은 각짐)
+      const opts = { pixelRatio: 2, style: { borderRadius: '28px' } }
+      // 모바일 사파리: 첫 캡처에 이미지가 빠지는 버그 → 한 번 워밍업 후 두 번째 결과 사용
+      await toPng(node, opts)
+      const dataUrl = await toPng(node, opts)
+
       const a = document.createElement('a')
       a.download = `${name}_${type.name}.png`
       a.href = dataUrl

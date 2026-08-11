@@ -1,12 +1,12 @@
-// 캐릭터 이미지 (pic/ 폴더)
-import imgAXF from '../../pic/찰방이_수달.png'
-import imgAXP from '../../pic/토리_다람쥐.png'
-import imgAYF from '../../pic/골디_골드리트리버.png'
-import imgAYP from '../../pic/코코_코끼리.png'
-import imgBXF from '../../pic/뾰롱_고슴도치.png'
-import imgBXP from '../../pic/등이_거북이.png'
-import imgBYF from '../../pic/몽실_토끼.png'
-import imgBYP from '../../pic/밤이_부엉이.png'
+// 캐릭터 이미지 (pic2/ 폴더 — 유형코드_이름.png)
+import imgAXF from '../../pic2/AXF_호기심대장 째각이.png'
+import imgAXP from '../../pic2/AXP_발견왕 째깍이.png'
+import imgAYF from '../../pic2/AYF_친구대장 째깍이.png'
+import imgAYP from '../../pic2/AYP_탐험가 째각이.png'
+import imgBXF from '../../pic2/BXF_발명가 째각이.png'
+import imgBXP from '../../pic2/BXP_척척박사 째깍이.png'
+import imgBYF from '../../pic2/BYF_상상가 째각이.png'
+import imgBYP from '../../pic2/BYP_동물탐정 째각이.png'
 
 // 8가지 놀이 유형 — character_explain 기준
 // 코드 = 에너지(A/B) + 몰입(X/Y) + 방식(P/F)
@@ -24,7 +24,7 @@ export const EXPEDITION_THEME = {
 export const types = {
   AXF: {
     code: 'AXF',
-    name: '찰방',
+    name: '호기심대장 째각이',
     animal: '수달',
     emoji: '🦦',
     image: imgAXF,
@@ -39,7 +39,7 @@ export const types = {
   },
   AXP: {
     code: 'AXP',
-    name: '토리',
+    name: '발견왕 째깍이',
     animal: '다람쥐',
     emoji: '🐿️',
     image: imgAXP,
@@ -54,7 +54,7 @@ export const types = {
   },
   AYF: {
     code: 'AYF',
-    name: '골디',
+    name: '친구대장 째깍이',
     animal: '골든리트리버',
     emoji: '🐕',
     image: imgAYF,
@@ -69,7 +69,7 @@ export const types = {
   },
   AYP: {
     code: 'AYP',
-    name: '코코',
+    name: '탐험가 째각이',
     animal: '코끼리',
     emoji: '🐘',
     image: imgAYP,
@@ -84,7 +84,7 @@ export const types = {
   },
   BXF: {
     code: 'BXF',
-    name: '뽀롱',
+    name: '발명가 째각이',
     animal: '고슴도치',
     emoji: '🦔',
     image: imgBXF,
@@ -99,7 +99,7 @@ export const types = {
   },
   BXP: {
     code: 'BXP',
-    name: '등이',
+    name: '척척박사 째깍이',
     animal: '거북이',
     emoji: '🐢',
     image: imgBXP,
@@ -114,7 +114,7 @@ export const types = {
   },
   BYF: {
     code: 'BYF',
-    name: '몽실',
+    name: '상상가 째각이',
     animal: '토끼',
     emoji: '🐰',
     image: imgBYF,
@@ -129,7 +129,7 @@ export const types = {
   },
   BYP: {
     code: 'BYP',
-    name: '밤이',
+    name: '동물탐정 째각이',
     animal: '부엉이',
     emoji: '🦉',
     image: imgBYP,

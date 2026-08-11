@@ -49,7 +49,7 @@ export function shareResult({ name, type }) {
   Kakao.Share.sendDefault({
     objectType: 'text',
     text:
-      `${subject} ${type.name} ${type.animal}! · ${type.typeName} 🐊\n\n` +
+      `${subject} ${type.name}! · ${type.typeName} 🐊\n\n` +
       `우리 아이 놀이 성향은?\n1분 테스트로 확인해보세요!`,
     link: { mobileWebUrl: url, webUrl: url },
     buttonTitle: '나도 테스트 하러가기',

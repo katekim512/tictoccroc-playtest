@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { toPng } from 'html-to-image'
 import { Button } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
-import { shareResult } from '../lib/kakao'
 import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
@@ -57,28 +57,38 @@ export default function Result({ profile, result, onRestart }) {
     window.open(p.url, '_blank', 'noopener,noreferrer')
   }
 
-  const handleShare = () => {
-    track('share_click', { type_code: code, channel: 'kakao' })
-    shareResult({ name, type })
+  // 위 색칠된 히어로 영역만 카드 이미지로 저장
+  const heroRef = useRef(null)
+  const handleSaveImage = async () => {
+    if (!heroRef.current) return
+    track('image_save', { type_code: code })
+    try {
+      const dataUrl = await toPng(heroRef.current, {
+        pixelRatio: 2,
+        cacheBust: true,
+        // 저장 이미지에만 둥근 모서리 (화면은 각짐 — 클론에만 적용됨)
+        style: { borderRadius: '28px' },
+      })
+      const a = document.createElement('a')
+      a.download = `${name}_${type.name}.png`
+      a.href = dataUrl
+      a.click()
+    } catch (e) {
+      window.alert('이미지 저장에 실패했어요. 다시 시도해주세요.')
+    }
   }
 
   return (
     <div className='result'>
-      <div className='r-hero' style={{ background: theme.bg }}>
+      <div className='r-hero' ref={heroRef} style={{ background: theme.bg }}>
         <div className='r-badge'>재미로 보는 놀이 성향 테스트예요</div>
         <div className='r-quote'>{type.quote}</div>
-        <img
-          className='r-char'
-          src={type.image}
-          alt={`${type.name} ${type.animal}`}
-        />
+        <img className='r-char' src={type.image} alt={type.name} />
         <div className='r-who'>
           {age ? `${age}세 ` : ''}
           {nameSubject}
         </div>
-        <h2 className='r-typename'>
-          {type.animal} {type.name}!
-        </h2>
+        <h2 className='r-typename'>{type.name}!</h2>
         <div className='r-role'>{type.typeName}</div>
         <p className='r-desc'>{type.desc}</p>
         <div className='r-hash'>
@@ -144,9 +154,9 @@ export default function Result({ profile, result, onRestart }) {
           color='primary'
           size='xLarge'
           inlineCSS={{ flex: 1 }}
-          onClick={handleShare}
+          onClick={handleSaveImage}
         >
-          카카오톡 공유
+          이미지 저장
         </Button>
       </div>
       <div className='r-note'>

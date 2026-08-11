@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:ui.tictoccroc.com)",
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('main',d.get\\('main'\\)\\); print\\('module',d.get\\('module'\\)\\); print\\('types',d.get\\('types'\\)\\); print\\('exports',json.dumps\\(d.get\\('exports'\\),ensure_ascii=False\\)[:800]\\)\")",
+      "Bash(npm run *)",
+      "Bash(cd /Users/yeeunkim/Documents/tictoccroc-playtest *)",
+      "Bash(python3 /tmp/decode_badges.py)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/모험가_악어.png)",
+      "Bash(awk '{print $5}')",
+      "Bash(sips -Z 440 public/모험가_악어.png)",
+      "Bash(awk '{print \"용량:\", $5}')",
+      "Bash(awk '{print \"dist 용량:\", $5}')",
+      "Bash(sips -g pixelWidth -g pixelHeight public/loading-croc.png)",
+      "Bash(sips -Z 440 public/loading-croc.png)"
+    ],
+    "additionalDirectories": [
+      "/Users/yeeunkim/Documents/tictoccroc-playtest"
+    ]
+  }
+}

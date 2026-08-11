@@ -34,7 +34,7 @@ export default function Intro({ onStart }) {
         <img
           src={types.AXF.image}
           alt=''
-          style={{ left: '5%', bottom: '24%', width: '74px' }}
+          style={{ left: '7%', bottom: '24%', width: '74px' }}
         />
         <img
           src={types.AXP.image}
@@ -44,7 +44,7 @@ export default function Intro({ onStart }) {
         <img
           src={types.AYF.image}
           alt=''
-          style={{ left: '50%', bottom: '28%', width: '83px' }}
+          style={{ left: '50%', bottom: '30%', width: '73px' }}
         />
         <img
           src={types.AYP.image}
@@ -54,7 +54,7 @@ export default function Intro({ onStart }) {
         <img
           src={types.BYF.image}
           alt=''
-          style={{ left: '15%', bottom: '17%', width: '62px' }}
+          style={{ left: '18%', bottom: '17%', width: '62px' }}
         />
         <img
           src={types.BYP.image}
@@ -64,12 +64,12 @@ export default function Intro({ onStart }) {
         <img
           src={types.BXF.image}
           alt=''
-          style={{ left: '40%', bottom: '14%', width: '70px' }}
+          style={{ left: '43%', bottom: '16%', width: '70px' }}
         />
         <img
           src={types.BXP.image}
           alt=''
-          style={{ right: '7%', bottom: '13%', width: '78px' }}
+          style={{ right: '7%', bottom: '14%', width: '78px' }}
         />
       </div>
 

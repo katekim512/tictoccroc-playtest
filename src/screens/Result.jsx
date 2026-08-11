@@ -7,6 +7,17 @@ import { getShareUrl } from '../lib/kakao'
 import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
+// 상품 아웃바운드 링크에 UTM 부착 → 목적지(상품 사이트) GA가 테스트 기여를 귀속
+function withUtm(url, params) {
+  try {
+    const u = new URL(url)
+    Object.entries(params).forEach(([k, v]) => u.searchParams.set(k, v))
+    return u.toString()
+  } catch {
+    return url
+  }
+}
+
 export default function Result({ profile, result, onRestart }) {
   const { code, type, products } = result
   const { name, age } = profile
@@ -32,6 +43,7 @@ export default function Result({ profile, result, onRestart }) {
       immersion: code[1],
       style: code[2],
       age_group: ageGroup(age),
+      age: Number(age) || undefined,
     })
     products.forEach((p, i) =>
       track('product_impression', {
@@ -55,7 +67,14 @@ export default function Result({ profile, result, onRestart }) {
       is_pb: isPick(p),
       link_url: p.url,
     })
-    window.open(p.url, '_blank', 'noopener,noreferrer')
+    const target = withUtm(p.url, {
+      utm_source: 'play_test',
+      utm_medium: 'result_reco',
+      utm_campaign: 'play_test',
+      content: productId(p.url),
+      slot,
+    })
+    window.open(target, '_blank', 'noopener,noreferrer')
   }
 
   // 캐릭터 이미지를 base64로 미리 인라인 → 저장 캡처 시 fetch 없이 항상 포함

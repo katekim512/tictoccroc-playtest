@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
 import { Button } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
@@ -57,6 +57,32 @@ export default function Result({ profile, result, onRestart }) {
     window.open(p.url, '_blank', 'noopener,noreferrer')
   }
 
+  // 캐릭터 이미지를 base64로 미리 인라인 → 저장 캡처 시 fetch 없이 항상 포함
+  const [charSrc, setCharSrc] = useState(type.image)
+  useEffect(() => {
+    let alive = true
+    fetch(type.image)
+      .then((r) => r.blob())
+      .then(
+        (blob) =>
+          new Promise((res, rej) => {
+            const fr = new FileReader()
+            fr.onload = () => res(fr.result)
+            fr.onerror = rej
+            fr.readAsDataURL(blob)
+          }),
+      )
+      .then((dataUrl) => {
+        if (alive) setCharSrc(dataUrl)
+      })
+      .catch(() => {
+        /* 실패 시 원본 URL 유지 */
+      })
+    return () => {
+      alive = false
+    }
+  }, [type.image])
+
   // 위 색칠된 히어로 영역만 카드 이미지로 저장
   const heroRef = useRef(null)
   const handleSaveImage = async () => {
@@ -101,7 +127,7 @@ export default function Result({ profile, result, onRestart }) {
       <div className='r-hero' ref={heroRef} style={{ background: theme.bg }}>
         <div className='r-badge'>재미로 보는 놀이 성향 테스트예요</div>
         <div className='r-quote'>{type.quote}</div>
-        <img className='r-char' src={type.image} alt={type.name} />
+        <img className='r-char' src={charSrc} alt={type.name} />
         <div className='r-who'>
           {age ? `${age}세 ` : ''}
           {nameSubject}

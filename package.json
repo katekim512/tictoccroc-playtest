@@ -12,6 +12,7 @@
     "@dotss/ui": "^1.7.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "html-to-image": "^1.11.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

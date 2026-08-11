@@ -57,7 +57,10 @@ export default function App() {
             initial={profile}
             onBack={() => setStep('intro')}
             onNext={(p) => {
-              track('profile_submit', { age_group: ageGroup(p.age) })
+              track('profile_submit', {
+                age_group: ageGroup(p.age),
+                age: Number(p.age) || undefined,
+              })
               setProfile(p)
               setStep('question')
             }}

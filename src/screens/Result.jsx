@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { toPng } from 'html-to-image'
-import { Button } from '@dotss/ui'
+import { Button, Icon } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
+import { getShareUrl } from '../lib/kakao'
 import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
@@ -122,6 +123,31 @@ export default function Result({ profile, result, onRestart }) {
     }
   }
 
+  // 링크 공유 — 모바일 네이티브 공유 시트, 없으면 링크 복사
+  const handleShareLink = async () => {
+    const url = getShareUrl({ type: code })
+    track('share_click', { type_code: code, channel: 'link' })
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '우리 아이 놀이 원정대',
+          text: `${nameSubject} ${type.name}!`,
+          url,
+        })
+        return
+      } catch {
+        /* 사용자가 취소하면 무시 */
+        return
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url)
+      window.alert(`공유 링크를 복사했어요!\n${url}`)
+    } catch {
+      window.prompt('아래 링크를 복사해서 공유하세요', url)
+    }
+  }
+
   return (
     <div className='result'>
       <div className='r-hero' ref={heroRef} style={{ background: theme.bg }}>
@@ -193,15 +219,20 @@ export default function Result({ profile, result, onRestart }) {
         >
           다시 하기
         </Button>
-        <Button
-          variant='filled'
-          color='primary'
-          size='xLarge'
-          inlineCSS={{ flex: 1 }}
+        <button
+          className='r-icon-btn filled'
           onClick={handleSaveImage}
+          aria-label='이미지 저장'
         >
-          이미지 저장
-        </Button>
+          <Icon name='DownloadLine' width={22} height={22} />
+        </button>
+        <button
+          className='r-icon-btn'
+          onClick={handleShareLink}
+          aria-label='링크 공유'
+        >
+          <Icon name='LinkLine' width={22} height={22} />
+        </button>
       </div>
       <div className='r-note'>
         놀이 성향은 재미로 보는 참고용이에요 · 아이의 하루하루가 정답입니다 🐊

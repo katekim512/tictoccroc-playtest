@@ -15,7 +15,8 @@
       "Bash(awk '{print \"용량:\", $5}')",
       "Bash(awk '{print \"dist 용량:\", $5}')",
       "Bash(sips -g pixelWidth -g pixelHeight public/loading-croc.png)",
-      "Bash(sips -Z 440 public/loading-croc.png)"
+      "Bash(sips -Z 440 public/loading-croc.png)",
+      "Bash(grep -oiE \"currentColor|fill|color[^,;]{0,40}\" Icon/Icon.es.js)"
     ],
     "additionalDirectories": [
       "/Users/yeeunkim/Documents/tictoccroc-playtest"

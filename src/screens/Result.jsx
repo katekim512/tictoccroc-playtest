@@ -227,7 +227,7 @@ export default function Result({ profile, result, onRestart }) {
           <Icon name='DownloadLine' width={22} height={22} />
         </button>
         <button
-          className='r-icon-btn'
+          className='r-icon-btn filled'
           onClick={handleShareLink}
           aria-label='링크 공유'
         >

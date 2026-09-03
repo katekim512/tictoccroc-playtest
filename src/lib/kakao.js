@@ -32,7 +32,7 @@ export function getShareUrl(params = {}) {
 }
 
 // 결과 자랑 + 테스트 초대 카드 공유
-// 성공하면 true, 카카오 미설정으로 폴백(링크 복사)하면 false
+// 카카오 피드로 결과와 테스트 초대 링크를 공유
 export function shareResult({ name, type }) {
   // 어떤 결과가 공유를 유발했는지 보려고 유형 코드도 링크에 실음
   const url = getShareUrl({ type: type.code, name })
@@ -40,12 +40,6 @@ export function shareResult({ name, type }) {
 
   initKakao()
   const Kakao = window.Kakao
-
-  if (!Kakao || !Kakao.isInitialized()) {
-    // 카카오 키 미설정 시 폴백: 링크 복사
-    copyLink(url)
-    return false
-  }
 
   Kakao.Share.sendDefault({
     objectType: 'feed',
@@ -63,15 +57,4 @@ export function shareResult({ name, type }) {
     ],
   })
   return true
-}
-
-function copyLink(url) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(url).then(
-      () => window.alert(`공유 링크를 복사했어요!\n${url}`),
-      () => window.prompt('아래 링크를 복사해서 공유하세요', url),
-    )
-  } else {
-    window.prompt('아래 링크를 복사해서 공유하세요', url)
-  }
 }

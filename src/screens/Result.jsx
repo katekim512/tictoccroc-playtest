@@ -3,7 +3,7 @@ import { toPng } from 'html-to-image'
 import { Button, Icon } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
-import { getShareUrl } from '../lib/kakao'
+import { shareResult } from '../lib/kakao'
 import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
@@ -23,8 +23,8 @@ export default function Result({ profile, result, onRestart }) {
   const { name, age } = profile
   const theme = EXPEDITION_THEME[type.expedition]
 
-  // 이름 조사: "서준은" / "코코는"
-  const nameSubject = josa(name, '은/는')
+  // 이름 조사: "서준이는" / "코코는"
+  const nameSubject = josa(name, '이는/는')
 
   // 관찰 포인트: 첫 문장만 볼드, 둘째 문장부터는 일반
   const [obsFirst, ...obsRest] = type.observation
@@ -82,9 +82,9 @@ export default function Result({ profile, result, onRestart }) {
   useEffect(() => {
     let alive = true
     fetch(type.image)
-      .then((r) => r.blob())
+      .then(r => r.blob())
       .then(
-        (blob) =>
+        blob =>
           new Promise((res, rej) => {
             const fr = new FileReader()
             fr.onload = () => res(fr.result)
@@ -92,7 +92,7 @@ export default function Result({ profile, result, onRestart }) {
             fr.readAsDataURL(blob)
           }),
       )
-      .then((dataUrl) => {
+      .then(dataUrl => {
         if (alive) setCharSrc(dataUrl)
       })
       .catch(() => {
@@ -114,7 +114,7 @@ export default function Result({ profile, result, onRestart }) {
       if (document.fonts?.ready) await document.fonts.ready
       const img = node.querySelector('img')
       if (img && !img.complete) {
-        await new Promise((res) => {
+        await new Promise(res => {
           img.onload = res
           img.onerror = res
         })
@@ -142,29 +142,10 @@ export default function Result({ profile, result, onRestart }) {
     }
   }
 
-  // 링크 공유 — 모바일 네이티브 공유 시트, 없으면 링크 복사
-  const handleShareLink = async () => {
-    const url = getShareUrl({ type: code })
+  // 카카오 SDK 카드 공유
+  const handleShareLink = () => {
     track('share_click', { type_code: code, channel: 'link' })
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: '우리 아이 놀이 원정대',
-          text: `${nameSubject} ${type.name}!`,
-          url,
-        })
-        return
-      } catch {
-        /* 사용자가 취소하면 무시 */
-        return
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url)
-      window.alert(`공유 링크를 복사했어요!\n${url}`)
-    } catch {
-      window.prompt('아래 링크를 복사해서 공유하세요', url)
-    }
+    shareResult({ name, type })
   }
 
   return (

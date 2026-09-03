@@ -14,13 +14,13 @@ const AXIS_LETTERS = {
 export function scoreAnswers(answers) {
   const axisOrder = ['energy', 'immersion', 'style']
   const code = axisOrder
-    .map((axis) => {
+    .map(axis => {
       const [first, second] = AXIS_LETTERS[axis]
       let firstCount = 0
       let secondCount = 0
       questions
-        .filter((q) => q.axis === axis)
-        .forEach((q) => {
+        .filter(q => q.axis === axis)
+        .forEach(q => {
           const v = answers[q.id]
           if (v === first) firstCount += 1
           else if (v === second) secondCount += 1
@@ -39,4 +39,10 @@ export function buildResult(answers) {
   const type = getType(code)
   const products = getProducts(type.expedition)
   return { code, type, products }
+}
+
+export function buildResultFromCode(code) {
+  const type = getType(code)
+  if (!type) return null
+  return { code, type, products: getProducts(type.expedition) }
 }

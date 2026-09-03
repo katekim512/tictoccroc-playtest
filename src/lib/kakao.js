@@ -34,8 +34,8 @@ export function getShareUrl(params = {}) {
 // 성공하면 true, 카카오 미설정으로 폴백(링크 복사)하면 false
 export function shareResult({ name, type }) {
   // 어떤 결과가 공유를 유발했는지 보려고 유형 코드도 링크에 실음
-  const url = getShareUrl({ type: type.code })
-  const subject = josa(name, '은/는') // "서준은" / "코코는"
+  const url = getShareUrl({ type: type.code, name })
+  const subject = josa(name, '이는/는') // "서준이는" / "코코는"
 
   initKakao()
   const Kakao = window.Kakao
@@ -47,12 +47,19 @@ export function shareResult({ name, type }) {
   }
 
   Kakao.Share.sendDefault({
-    objectType: 'text',
-    text:
-      `${subject} ${type.name}! · ${type.typeName} 🐊\n\n` +
-      `우리 아이 놀이 성향은?\n1분 테스트로 확인해보세요!`,
-    link: { mobileWebUrl: url, webUrl: url },
-    buttonTitle: '나도 테스트 하러가기',
+    objectType: 'feed',
+    content: {
+      title: `${subject} ${type.name}!`,
+      description: '여기를 눌러 링크를 확인하세요',
+      imageUrl: new URL(type.image, window.location.origin).href,
+      link: { mobileWebUrl: url, webUrl: url },
+    },
+    buttons: [
+      {
+        title: '여기를 눌러 링크를 확인하세요',
+        link: { mobileWebUrl: url, webUrl: url },
+      },
+    ],
   })
   return true
 }

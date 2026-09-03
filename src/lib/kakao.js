@@ -50,12 +50,15 @@ export function shareResult({ name, type }) {
     objectType: 'feed',
     content: {
       title: `${subject} ${type.name}!`,
-      description: `${type.typeName} · 우리 아이 놀이 성향 테스트 결과`,
+      description: '여기를 눌러 링크를 확인하세요',
       imageUrl: new URL(type.image, window.location.origin).href,
       link: { mobileWebUrl: url, webUrl: url },
     },
     buttons: [
-      { title: '결과 보러가기', link: { mobileWebUrl: url, webUrl: url } },
+      {
+        title: '여기를 눌러 링크를 확인하세요',
+        link: { mobileWebUrl: url, webUrl: url },
+      },
     ],
   })
   return true

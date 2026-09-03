@@ -10,7 +10,9 @@ import { buildResult, buildResultFromCode } from './lib/scoring'
 
 // 화면 흐름: intro → profile → question → loading → result
 export default function App() {
-  const sharedCode = new URLSearchParams(window.location.search).get('type')?.toUpperCase()
+  const sharedCode = new URLSearchParams(window.location.search)
+    .get('type')
+    ?.toUpperCase()
   const sharedName = new URLSearchParams(window.location.search).get('name')
   const sharedResult = buildResultFromCode(sharedCode)
   const [step, setStep] = useState(sharedResult ? 'result' : 'intro')
@@ -40,15 +42,15 @@ export default function App() {
     setStep('intro')
   }
 
-  const handleQuizDone = (finalAnswers) => {
+  const handleQuizDone = finalAnswers => {
     setAnswers(finalAnswers)
     setResult(buildResult(finalAnswers))
     setStep('loading')
   }
 
   return (
-    <div className="app-shell">
-      <div className="frame">
+    <div className='app-shell'>
+      <div className='frame'>
         {step === 'intro' && (
           <Intro
             onStart={() => {
@@ -62,7 +64,7 @@ export default function App() {
           <Profile
             initial={profile}
             onBack={() => setStep('intro')}
-            onNext={(p) => {
+            onNext={p => {
               track('profile_submit', {
                 age_group: ageGroup(p.age),
                 age: Number(p.age) || undefined,

@@ -3,7 +3,7 @@ import { toPng } from 'html-to-image'
 import { Button, Icon } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
-import { getShareUrl } from '../lib/kakao'
+import { getShareUrl, isKakaoConfigured, shareResult } from '../lib/kakao'
 import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
@@ -82,9 +82,9 @@ export default function Result({ profile, result, onRestart }) {
   useEffect(() => {
     let alive = true
     fetch(type.image)
-      .then((r) => r.blob())
+      .then(r => r.blob())
       .then(
-        (blob) =>
+        blob =>
           new Promise((res, rej) => {
             const fr = new FileReader()
             fr.onload = () => res(fr.result)
@@ -92,7 +92,7 @@ export default function Result({ profile, result, onRestart }) {
             fr.readAsDataURL(blob)
           }),
       )
-      .then((dataUrl) => {
+      .then(dataUrl => {
         if (alive) setCharSrc(dataUrl)
       })
       .catch(() => {
@@ -114,7 +114,7 @@ export default function Result({ profile, result, onRestart }) {
       if (document.fonts?.ready) await document.fonts.ready
       const img = node.querySelector('img')
       if (img && !img.complete) {
-        await new Promise((res) => {
+        await new Promise(res => {
           img.onload = res
           img.onerror = res
         })
@@ -146,6 +146,10 @@ export default function Result({ profile, result, onRestart }) {
   const handleShareLink = async () => {
     const url = getShareUrl({ type: code, name })
     track('share_click', { type_code: code, channel: 'link' })
+    if (isKakaoConfigured()) {
+      shareResult({ name, type })
+      return
+    }
     if (navigator.share) {
       try {
         await navigator.share({

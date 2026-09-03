@@ -3,7 +3,7 @@ import { toPng } from 'html-to-image'
 import { Button, Icon } from '@dotss/ui'
 import { EXPEDITION_THEME } from '../data/types'
 import { josa } from '../lib/josa'
-import { getShareUrl, isKakaoConfigured, shareResult } from '../lib/kakao'
+import { shareResult } from '../lib/kakao'
 import { track, ageGroup, productId } from '../lib/analytics'
 import './Result.css'
 
@@ -142,33 +142,10 @@ export default function Result({ profile, result, onRestart }) {
     }
   }
 
-  // 링크 공유 — 모바일 네이티브 공유 시트, 없으면 링크 복사
-  const handleShareLink = async () => {
-    const url = getShareUrl({ type: code, name })
+  // 카카오 SDK 카드 공유
+  const handleShareLink = () => {
     track('share_click', { type_code: code, channel: 'link' })
-    if (isKakaoConfigured()) {
-      shareResult({ name, type })
-      return
-    }
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: '우리 아이 놀이 원정대',
-          text: `${nameSubject} ${type.name}!`,
-          url,
-        })
-        return
-      } catch {
-        /* 사용자가 취소하면 무시 */
-        return
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url)
-      window.alert(`공유 링크를 복사했어요!\n${url}`)
-    } catch {
-      window.prompt('아래 링크를 복사해서 공유하세요', url)
-    }
+    shareResult({ name, type })
   }
 
   return (

@@ -34,8 +34,8 @@ export function getShareUrl(params = {}) {
 // 성공하면 true, 카카오 미설정으로 폴백(링크 복사)하면 false
 export function shareResult({ name, type }) {
   // 어떤 결과가 공유를 유발했는지 보려고 유형 코드도 링크에 실음
-  const url = getShareUrl({ type: type.code })
-  const subject = josa(name, '은/는') // "서준은" / "코코는"
+  const url = getShareUrl({ type: type.code, name })
+  const subject = josa(name, '이는/는') // "서준이는" / "코코는"
 
   initKakao()
   const Kakao = window.Kakao

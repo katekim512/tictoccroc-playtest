@@ -23,8 +23,8 @@ export default function Result({ profile, result, onRestart }) {
   const { name, age } = profile
   const theme = EXPEDITION_THEME[type.expedition]
 
-  // 이름 조사: "서준은" / "코코는"
-  const nameSubject = josa(name, '은/는')
+  // 이름 조사: "서준이는" / "코코는"
+  const nameSubject = josa(name, '이는/는')
 
   // 관찰 포인트: 첫 문장만 볼드, 둘째 문장부터는 일반
   const [obsFirst, ...obsRest] = type.observation
@@ -144,7 +144,7 @@ export default function Result({ profile, result, onRestart }) {
 
   // 링크 공유 — 모바일 네이티브 공유 시트, 없으면 링크 복사
   const handleShareLink = async () => {
-    const url = getShareUrl({ type: code })
+    const url = getShareUrl({ type: code, name })
     track('share_click', { type_code: code, channel: 'link' })
     if (navigator.share) {
       try {

@@ -40,3 +40,9 @@ export function buildResult(answers) {
   const products = getProducts(type.expedition)
   return { code, type, products }
 }
+
+export function buildResultFromCode(code) {
+  const type = getType(code)
+  if (!type) return null
+  return { code, type, products: getProducts(type.expedition) }
+}

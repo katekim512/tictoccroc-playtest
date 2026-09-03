@@ -6,14 +6,20 @@ import Profile from './screens/Profile'
 import Question from './screens/Question'
 import Loading from './screens/Loading'
 import Result from './screens/Result'
-import { buildResult } from './lib/scoring'
+import { buildResult, buildResultFromCode } from './lib/scoring'
 
 // 화면 흐름: intro → profile → question → loading → result
 export default function App() {
-  const [step, setStep] = useState('intro')
-  const [profile, setProfile] = useState({ name: '', age: '' })
+  const sharedCode = new URLSearchParams(window.location.search).get('type')?.toUpperCase()
+  const sharedName = new URLSearchParams(window.location.search).get('name')
+  const sharedResult = buildResultFromCode(sharedCode)
+  const [step, setStep] = useState(sharedResult ? 'result' : 'intro')
+  const [profile, setProfile] = useState({
+    name: sharedResult ? sharedName || '우리 아이' : '',
+    age: '',
+  })
   const [answers, setAnswers] = useState({})
-  const [result, setResult] = useState(null)
+  const [result, setResult] = useState(sharedResult)
 
   // 카카오 SDK · GA4 초기화 (키/ID가 설정돼 있을 때만)
   useEffect(() => {

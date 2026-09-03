@@ -2,6 +2,7 @@ import { josa } from './josa'
 
 // 카카오 JavaScript 키 — .env 의 VITE_KAKAO_JS_KEY 로 주입 (클라이언트 공개용 키)
 const KAKAO_JS_KEY = import.meta.env.VITE_KAKAO_JS_KEY
+const SHARE_ORIGIN = 'https://tictoccroc-playtest.vercel.app'
 
 // SDK 로드 + 초기화 (한 번만)
 export function initKakao() {
@@ -20,7 +21,7 @@ export function isKakaoConfigured() {
 // 공유용 링크 — UTM 꼬리표를 붙여 GA4가 유입(재방문)을 집계할 수 있게 함
 // 예: https://도메인/?utm_source=kakao&utm_medium=share&utm_campaign=play_test&type=AXF
 export function getShareUrl(params = {}) {
-  const base = window.location.origin + import.meta.env.BASE_URL
+  const base = SHARE_ORIGIN + import.meta.env.BASE_URL
   const usp = new URLSearchParams({
     utm_source: 'kakao',
     utm_medium: 'share',
@@ -51,7 +52,7 @@ export function shareResult({ name, type }) {
     content: {
       title: `${subject} ${type.name}!`,
       description: '여기를 눌러 링크를 확인하세요',
-      imageUrl: new URL(type.image, window.location.origin).href,
+      imageUrl: new URL(type.image, SHARE_ORIGIN).href,
       link: { mobileWebUrl: url, webUrl: url },
     },
     buttons: [

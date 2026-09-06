@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🐊 우리 아이 놀이 유형 테스트
+# 🐊 아이 원정대 찾기
 
 **부모가 1분 만에 아이의 놀이 유형을 알아보고, 딱 맞는 프로그램을 추천받아 카카오톡으로 공유하는 바이럴 테스트**
 
-째깍악어(TicToc Croc) · 9문항으로 알아보는 8가지 놀이 악어 유형
+커넥팅더닷츠 째깍원정대 협업 · 9문항으로 알아보는 8가지 놀이 성향
 
 <br>
 
@@ -17,6 +17,14 @@
 </div>
 
 ---
+<img width="6000" height="3375" alt="organized_page-0001" src="https://github.com/user-attachments/assets/72b09342-6455-475d-ac58-00745c1d9db1" />
+<img width="4000" height="2250" alt="organized_page-0002" src="https://github.com/user-attachments/assets/2457f3dc-29ba-4ccd-ae8a-f822ef74b08c" />
+<img width="6000" height="3375" alt="organized_page-0003" src="https://github.com/user-attachments/assets/3a7e7ccf-af2d-4696-93d4-badf5af978bc" />
+<img width="4000" height="2250" alt="organized_page-0004" src="https://github.com/user-attachments/assets/1d915c7a-dee9-41aa-8b84-3bbf1ecf15fa" />
+<img width="4000" height="2250" alt="organized_page-0005" src="https://github.com/user-attachments/assets/6b43c861-4744-490f-8471-14eda7a0ac8b" />
+<img width="6000" height="3375" alt="organized_page-0006" src="https://github.com/user-attachments/assets/0491a30b-1b7a-4db7-9740-73ba2e3d3fcc" />
+<img width="6000" height="3375" alt="organized_page-0007" src="https://github.com/user-attachments/assets/34a7b883-3e37-4932-b6ea-adda283412e5" />
+
 
 ## 📖 소개
 
